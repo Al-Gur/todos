@@ -1,4 +1,4 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Post, Put } from '@nestjs/common';
 import { TodoService } from '../service/todo.service';
 import { NewTodoDto } from '../dto/NewTodoDto';
 
@@ -11,8 +11,18 @@ export class TodoController {
     return this.todoService.create(todoDto);
   }
 
-  @Get()
-  retrieveAll() {
-    return this.todoService.retrieveAll();
+  @Get('/{requestedStatus}')
+  retrieveAll(requestedStatus: string) {
+    return this.todoService.retrieveAll(requestedStatus);
+  }
+
+  @Put()
+  updateStatus(@Body() todoDto: NewTodoDto) {
+    return this.todoService.update(todoDto);
+  }
+
+  @Delete()
+  deleteTodo(@Body() todoDto: NewTodoDto) {
+    return this.todoService.delete(todoDto);
   }
 }
