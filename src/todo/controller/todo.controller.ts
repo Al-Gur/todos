@@ -11,9 +11,9 @@ export class TodoController {
     return this.todoService.create(todoDto);
   }
 
-  @Get('/{requestedStatus}')
-  retrieveAll(requestedStatus: string) {
-    return this.todoService.retrieveAll(requestedStatus);
+  @Get()
+  retrieveAll(@Body() todoDto: NewTodoDto) {
+    return this.todoService.retrieveAll(todoDto.status);
   }
 
   @Put()

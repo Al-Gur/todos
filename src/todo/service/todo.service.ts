@@ -17,6 +17,7 @@ export class TodoService {
   }
 
   retrieveAll(requestedStatus: string) {
+    //console.log(requestedStatus);
     return this.todoRepository.findBy({ status: requestedStatus });
   }
 
